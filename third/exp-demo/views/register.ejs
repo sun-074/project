@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <%- include common %>
+</head>
+
+<body>
+    <%- include("head",{title:"register"}) %>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <form action="/users/zhuce" method="POST">
+                    <div class="form-group">
+                        <label for="username">用户名</label>
+                        <input type="text" class="form-control" id="usernameInput" placeholder="请输入用户名" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="nickname">昵称</label>
+                        <input type="text" class="form-control" id="nicknameInput" placeholder="请输入昵称" name="nickname">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input type="password" class="form-control" name="password" id="passwordInput" placeholder="请输入密码">
+                    </div>
+                    <div class="form-group">
+                        <label for="againpwd">确认密码</label>
+                        <input type="password" class="form-control" name="againpwd" id="againpwdInput" placeholder="请重新输入密码">
+                    </div>
+                    <button type="submit" class="btn btn-danger">登录</button>
+                    <button type="reset" class="btn btn-primary">重置</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%- include("foot") %>
+</body>
+
+</html>

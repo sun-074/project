@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心</title>
+    <%- include common %>
+</head>
+
+<body>
+    <%- include("head", {title:'my'}) %>
+
+    <div class="container-fluid">
+        <h3>个人中心 --- 昵称：<%- result.nickname %></h3>
+        <div class="col-md-3">
+            <form>
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input disabled type="text" value="<%- result.username %>" class="form-control" id="username"
+                        placeholder="请输入用户名" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="nickname">昵称</label>
+                    <input type="text" value="<%- result.nickname %>" class="form-control" id="nicknameInput" placeholder="请输入昵称" name="nickname">
+                </div>
+                <div class="form-group">
+                    <label for="age">年龄</label>
+                    <input type="number" class="form-control" value="<%- result.age %>" id="ageInput" placeholder="请输入年龄" name="age">
+                </div>
+                <div class="form-group">
+                    <label for="email">邮箱</label>
+                    <input type="email" class="form-control"value="<%- result.email %>" name="email" id="emailInput" placeholder="请输入邮箱">
+                </div>
+            </form>
+            <button type="button" class="btn btn-danger" onclick="changesome()">修改个人信息</button>
+            <button type="button" class="btn btn-primary" onclick="location.href='/resetpwd'">重置密码</button>
+        </div>
+    </div>
+</body>
+<script>
+    function changesome(){
+        $.ajax({
+            url:'/users/mychange',
+            type:'post',
+            data:{
+                    nickname:$("#nicknameInput").val(),
+                    age:$("#ageInput").val(),
+                    email:$("#emailInput").val()
+                },
+            success(res){
+                console.log(res);
+                if(res.code == 200){
+                    location.href = '/my'
+                }else{
+                    alert('修改失败')
+                }
+            }    
+        })
+    }
+</script>
+
+</html>

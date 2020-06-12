@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>评论</title>
+    <%- include common %>
+</head>
+
+<body>
+    <%- include('head',{title:'movie'})%>
+
+    <div class="container">
+        <table class="table table-bordered table-hover">
+            <tr class="text-center">
+                <td>序号</td>
+                <td>电影标题</td>
+                <td>电影</td>
+                <td>评论标题</td>
+                <td>评论内容</td>
+                <td>评论时间</td>
+            </tr>
+        <%    result.forEach((item,index)=>{    %>
+                <tr class="text-center">
+                    <td><%- index+1 %></td>
+                    <td><%- item.mtitle%></td>
+                    <td>
+                        <img src="<%- item.mpic&&item.mpic.replace(/img7/,'img3') %>" width="80px" height="80px" alt="">
+                    </td>
+                    <td><%- item.title%></td>
+                    <td><%- item.content%></td>
+                    <td><%- item.time%></td>
+                </tr>
+        <%    })    %> 
+        </table>
+    </div>
+
+
+
+
+
+    <%- include foot%>
+</body>
+
+</html>

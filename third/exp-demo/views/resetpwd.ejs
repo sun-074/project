@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重置密码</title>
+    <%-  include common %>
+
+</head>
+
+<body>
+    <%- include('head',{title:'resetpwd'})%>
+
+    <div class="container-fluid">
+        <h2 class="text-danger"> 重置密码 </h2>
+        <div class="row">
+            <div class="col-md-3">
+                <form>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input type="password" value="" class="form-control" name="password" id="passwordInput"
+                            placeholder="请输入密码">
+                    </div>
+                    <div class="form-group">
+                        <label for="againpwd">确认密码</label>
+                        <input type="password" class="form-control" name="againpwd" id="againpwdInput"
+                            placeholder="请重新输入密码">
+                    </div>
+                    <div class="form-group">
+                        <label for="newpassword">新密码</label>
+                        <input type="password" value="" class="form-control" name="newpassword" id="newpasswordInput"
+                            placeholder="请输入新密码">
+                    </div>
+                    <div class="form-group">
+                        <label for="newagainpwd">确认新密码</label>
+                        <input type="password" class="form-control" name="newagainpwd" id="newagainpwdInput"
+                            placeholder="请重新输入新密码">
+                    </div>
+                </form>
+                <button type="button" class="btn btn-danger" onclick="changepwd()">确认修改</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    function changepwd() {
+        $.ajax({
+            url: "/users/pwdchange",
+            type: 'post',
+            data: {
+               password:$('#passwordInput').val(),
+               againpwd:$('#againpwdInput').val(),
+               newpassword:$('#newpasswordInput').val(),
+               newagainpwd:$('#newagainpwdInput').val()
+            },
+            success(res){
+                console.log(res);
+                if(res.code == 200){
+                    location.href = '/login'
+                }else{
+                    alert('修改失败')
+                }
+            }
+        })
+    }
+</script>
+
+</html>
